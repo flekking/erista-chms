@@ -1,12 +1,12 @@
 import BasePage from '@erista/core/page'
-import Authenticated from '@erista/middlewares/authenticated'
+import MainLayout from '@erista/layouts/main'
 
 export default class Dashboard extends BasePage {
   render() {
     return (
-      <Authenticated>
+      <MainLayout>
         <div>dashboard</div>
-      </Authenticated>
+      </MainLayout>
     )
   }
 }

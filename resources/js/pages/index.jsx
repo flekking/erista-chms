@@ -7,8 +7,10 @@ import {
   Navigate
 } from 'react-router-dom'
 
-import Login from './login'
 import Dashboard from './dashboard'
+import Login from './login'
+import ResetPassword from './resetPassword'
+import NewPassword from './newPassword'
 import NotFoundError from './notFoundError'
 
 export default class Page extends BasePage {
@@ -18,8 +20,10 @@ export default class Page extends BasePage {
         <Routes>
           <Route path="/web" element={<Outlet/>}>
             <Route index element={<Navigate replace to="dashboard"/>}/>
-            <Route path="login" element={<Login/>}/>
             <Route path="dashboard" element={<Dashboard/>}/>
+            <Route path="login" element={<Login/>}/>
+            <Route path="reset_password" element={<ResetPassword/>}/>
+            <Route path="new_password" element={<NewPassword/>}/>
             <Route path="*" element={<NotFoundError/>}/>
           </Route>
         </Routes>
