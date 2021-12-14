@@ -1,0 +1,71 @@
+/**
+ *  Main button component always apply the primary styling.
+ */
+.btn {
+  @apply
+    btn-md
+    btn-primary
+    font-medium
+    rounded-lg
+    text-base
+    text-center;
+}
+
+/**
+ *  Sizes.
+ */
+.btn-sm {
+  @apply px-3 py-1;
+}
+
+.btn-md {
+  @apply px-4 py-2;
+}
+
+.btn-lg {
+  @apply px-5 py-3;
+}
+
+/**
+ *  Colors.
+ */
+.btn-primary {
+  @apply
+    text-light
+    bg-primary
+    bg-primary-hover
+    border-purple-400 
+    dark:border-purple-300
+    hover:border-purple-500
+    dark:hover:border-purple-100;
+}
+.btn-secondary {
+  @apply
+    text-dark
+    bg-secondary
+    bg-secondary-hover
+    border-gray-200
+    dark:border-gray-600
+    hover:border-gray-300
+    dark:hover:border-gray-500;
+}
+.btn-success {
+  @apply
+    text-light
+    bg-success
+    bg-success-hover
+    border-green-400
+    dark:border-green-300
+    hover:border-green-500
+    dark:hover:border-green-100;
+}
+.btn-danger {
+  @apply
+    text-light
+    bg-danger
+    bg-danger-hover
+    border-red-400
+    dark:border-red-300
+    hover:border-red-500
+    dark:hover:border-red-100;
+}
