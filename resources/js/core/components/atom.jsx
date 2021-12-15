@@ -33,4 +33,10 @@ export default class Atom extends Component {
 
     return classes == '' ? [] : [classes]
   }
+
+  onClick(e) {
+    if (typeof this.props.onClick == 'function') {
+      this.props.onClick(e)
+    }
+  }
 }
