@@ -7,7 +7,6 @@
     btn-primary
     font-medium
     rounded-lg
-    text-base
     text-center;
 }
 
@@ -31,41 +30,129 @@
  */
 .btn-primary {
   @apply
-    text-light
-    bg-primary
-    bg-primary-hover
-    border-purple-400 
-    dark:border-purple-300
-    hover:border-purple-500
-    dark:hover:border-purple-100;
+    text-light-100
+    bg-primary-600
+    dark:bg-primary-500
+    hover:bg-primary-700
+    dark:hover:bg-primary-400
+    border-primary-400 
+    dark:border-primary-300
+    hover:border-primary-500
+    dark:hover:border-primary-100;
+  
+  &.disabled {
+    @apply bg-primary-400 hover:bg-primary-400;
+  }
 }
 .btn-secondary {
   @apply
-    text-dark
-    bg-secondary
-    bg-secondary-hover
-    border-gray-200
-    dark:border-gray-600
-    hover:border-gray-300
-    dark:hover:border-gray-500;
+    text-light-100
+    bg-secondary-600
+    dark:bg-secondary-500
+    hover:bg-secondary-700
+    dark:hover:bg-secondary-400
+    border-secondary-400 
+    dark:border-secondary-300
+    hover:border-secondary-500
+    dark:hover:border-secondary-100;
+  
+  &.disabled {
+    @apply bg-secondary-400 hover:bg-secondary-400;
+  }
 }
 .btn-success {
   @apply
-    text-light
-    bg-success
-    bg-success-hover
-    border-green-400
-    dark:border-green-300
-    hover:border-green-500
-    dark:hover:border-green-100;
+    text-light-100
+    bg-success-600
+    dark:bg-success-500
+    hover:bg-success-700
+    dark:hover:bg-success-400
+    border-success-400 
+    dark:border-success-300
+    hover:border-success-500
+    dark:hover:border-success-100;
+  
+  &.disabled {
+    @apply bg-success-400 hover:bg-success-400;
+  }
 }
 .btn-danger {
   @apply
-    text-light
-    bg-danger
-    bg-danger-hover
-    border-red-400
-    dark:border-red-300
-    hover:border-red-500
-    dark:hover:border-red-100;
+    text-light-100
+    bg-danger-600
+    dark:bg-danger-500
+    hover:bg-danger-700
+    dark:hover:bg-danger-400
+    border-danger-400 
+    dark:border-danger-300
+    hover:border-danger-500
+    dark:hover:border-danger-100;
+
+  &.disabled {
+    @apply bg-danger-400 hover:bg-danger-400;
+  }
+}
+.btn-warning {
+  @apply
+    text-light-100
+    bg-warning-600
+    dark:bg-warning-500
+    hover:bg-warning-700
+    dark:hover:bg-warning-400
+    border-warning-400 
+    dark:border-warning-300
+    hover:border-warning-500
+    dark:hover:border-warning-100;
+
+  &.disabled {
+    @apply bg-warning-400 hover:bg-warning-400;
+  }
+}
+.btn-info {
+  @apply
+    text-light-100
+    bg-info-600
+    dark:bg-info-500
+    hover:bg-info-700
+    dark:hover:bg-info-400
+    border-info-400 
+    dark:border-info-300
+    hover:border-info-500
+    dark:hover:border-info-100;
+
+  &.disabled {
+    @apply bg-info-400 hover:bg-info-400;
+  }
+}
+.btn-light {
+  @apply
+    text-zinc-900
+    bg-light-100
+    dark:bg-light-700
+    hover:bg-light-200
+    dark:hover:bg-light-600
+    border-light-200
+    dark:border-light-600
+    hover:border-light-300
+    dark:hover:border-light-500;
+
+  &.disabled {
+    @apply bg-zinc-200 hover:bg-zinc-200 text-zinc-500;
+  }
+}
+.btn-dark {
+  @apply
+    text-light-100
+    bg-dark-800
+    dark:bg-dark-700
+    hover:bg-dark-900
+    dark:hover:bg-dark-600
+    border-dark-600 
+    dark:border-dark-500
+    hover:border-dark-700
+    dark:hover:border-dark-300;
+
+  &.disabled {
+    @apply bg-dark-400 hover:bg-dark-400;
+  }
 }
