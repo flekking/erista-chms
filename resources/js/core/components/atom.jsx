@@ -1,7 +1,7 @@
 import Component from './index'
 
 export default class Atom extends Component {
-  compileClasses() {
+  _getCompiledClasses() {
     let classes = this.classes
 
     this.classMethods.forEach(methodName => {
@@ -20,10 +20,16 @@ export default class Atom extends Component {
     return classes
   }
 
+  _getDefaultOfMap(map, index) {
+    let item = map[index]
+    item = item == undefined ? map['_default'] : item
+    item = item == undefined ? '' : item
+
+    return item
+  }
+
   _getDefaultOfMappedClasses(classesMap, index) {
-    let classes = classesMap[index]
-    classes = classes == undefined ? classesMap['_default'] : classes
-    classes = classes == undefined ? '' : classes
+    let classes = this._getDefaultOfMap(classesMap, index)
 
     return classes == '' ? [] : [classes]
   }
