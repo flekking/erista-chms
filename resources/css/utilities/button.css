@@ -7,7 +7,10 @@
     btn-primary
     font-medium
     rounded-lg
-    text-center;
+    text-center
+    text-base
+    cursor-pointer
+    inline-block;
 }
 
 /**
