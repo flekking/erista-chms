@@ -1,6 +1,9 @@
 import Atom from '@erista/core/components/atom'
-import { CircleSpinner } from './loader'
 
+/**
+ * Define the generic <button/> component.
+ */
+import { CircleSpinner } from './loader'
 export class Button extends Atom {
   classes = ['btn']
   classMethods = [
@@ -11,7 +14,12 @@ export class Button extends Atom {
 
   render() {
     return (
-      <button className={this._getCompiledClasses()} disabled={this.propDisabled()}>
+      <button
+        className={this._getCompiledClasses()}
+        type={this.propType()}
+        disabled={this.propDisabled()}
+        onClick={ e => this.onClick(e) }
+      >
         {this.renderLoading()}
         {this.props.children}
       </button>
@@ -56,7 +64,7 @@ export class Button extends Atom {
       'light': 'btn-light',
       'dark': 'btn-dark',
     }
-    return this._getDefaultOfMappedClasses(classesMap, this.props.color)
+    return this._getDefaultOfMappedClasses(classesMap, this.propColor())
   }
 
   getDisabled() {
@@ -67,9 +75,52 @@ export class Button extends Atom {
     return [classes]
   }
 
+  propType() {
+    return this.props.type || 'button'
+  }
+
+  propColor() {
+    return this.props.color || 'primary'
+  }
+
   propDisabled() {
     return this.props.loading
       ? true
       : (this.props.disabled ? true : false)
+  }
+}
+
+/**
+ * Here we define the button that would act as a link.
+ */
+export class LinkButton extends Button {
+  render() {
+    return (
+      <a
+        className={this._getCompiledClasses()}
+        href={this.props.href}
+      >
+        {this.props.children}
+      </a>
+    )
+  }
+}
+
+/**
+ * Here we define the <Link/> from react-router-dom, but specifically in
+ * <Button/> style.
+ */
+import { Link } from 'react-router-dom'
+
+export class RouterButton extends Button {
+  render() {
+    return (
+      <Link
+        className={this._getCompiledClasses()}
+        to={this.props.to}
+      >
+        {this.props.children}
+      </Link>
+    )
   }
 }
