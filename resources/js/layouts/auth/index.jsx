@@ -5,7 +5,22 @@ export default class Auth extends Layout {
   render() {
     return (
       <Unauthenticated>
-        {this.propChildren()}
+        <div className="mx-auto md:h-screen flex flex-col justify-center items-center pt:mt-0 bg-gradient-erista">
+          <img
+            className="hidden md:absolute md:top-4 md:left-8 md:block md:w-40 md:h-14 z-10 object-cover object-center"
+            src="/img/static/erista-logo-landscape.png" alt="Erista Logo"
+          />
+          <img
+            className="hidden lg:absolute lg:my-auto lg:left-0 lg:block lg:w-7/12 z-10"
+            src="/img/static/people-brainstorm.svg" alt="Filler Image"
+          />
+          <div
+            className="mx-auto bg-white dark:bg-gray-800 p-6 md:bg-transparent lg:grid lg:grid-cols-2 items-center justify-center md:mt-0 w-full lg:max-w-screen-xl lg:relative 2xl:max:max-w-screen-xl xl:p-0"
+          >
+            <div className="hidden lg:block lg:w-full w-2/3"></div>
+            {this.propChildren()}
+          </div>
+        </div>
       </Unauthenticated>
     )
   }
