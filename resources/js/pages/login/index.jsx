@@ -5,7 +5,7 @@ export default class Login extends BasePage {
   render() {
     return (
       <AuthLayout>
-        <button className="btn">Meh</button>
+        
       </AuthLayout>
     )
   }
