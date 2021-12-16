@@ -6,6 +6,6 @@ export default class Blank extends Layout {
   }
 
   content() {
-    return this.props.children
+    return this.propChildren()
   }
 }

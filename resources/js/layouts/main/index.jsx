@@ -5,7 +5,7 @@ export default class Main extends Layout {
   render() {
     return (
       <Authenticated>
-        {this.props.children}
+        {this.propsChildren()}
       </Authenticated>
     )
   }

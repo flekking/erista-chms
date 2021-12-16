@@ -5,7 +5,7 @@ export default class Auth extends Layout {
   render() {
     return (
       <Unauthenticated>
-        {this.props.children}
+        {this.propChildren()}
       </Unauthenticated>
     )
   }
