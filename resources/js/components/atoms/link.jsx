@@ -4,7 +4,7 @@ import Atom from '@erista/core/components/atom'
  * Define the base <a/> component.
  */
 export class Link extends Atom {
-  classes = ['text-sm', 'font-thin']
+  classes = ['text-sm']
   classMethods = ['getColor']
 
   render() {
@@ -12,6 +12,7 @@ export class Link extends Atom {
       <a
         className={this._getCompiledClasses()}
         href={this.props.href}
+        onClick={ e => this.onClick(e) }
       >
         {this.props.children}
       </a>
