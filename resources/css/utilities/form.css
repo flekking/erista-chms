@@ -41,4 +41,33 @@ select {
   &.form-control-lg {
     @apply text-lg;
   }
+
+  &.form-control-error {
+    @apply bg-red-50 border-red-500 focus:border-red-600 text-red-900 placeholder-red-300;
+  }
+}
+
+[type='checkbox'].form-control {
+  @apply
+    bg-white
+    dark:bg-gray-900
+    border-gray-300
+    dark:border-gray-600
+    focus:ring-purple-300
+    h-4
+    w-4
+    rounded
+    text-purple-500;
+}
+
+label.form-label {
+  @apply text-sm font-medium text-gray-900 block mb-2;
+}
+
+label.form-control-checkbox-label {
+  @apply text-xs font-medium text-gray-900;
+}
+
+small.form-error {
+  @apply text-red-500;
 }
