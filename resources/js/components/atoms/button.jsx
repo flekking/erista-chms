@@ -50,7 +50,7 @@ export class Button extends Atom {
       'md': 'btn-md',
       'lg': 'btn-lg',
     }
-    return this._getDefaultOfMappedClasses(classesMap, this.props.size)
+    return this._getDefaultOfMappedClasses(classesMap, this.propSize())
   }
 
   getColor() {
@@ -77,10 +77,6 @@ export class Button extends Atom {
 
   propType() {
     return this.props.type || 'button'
-  }
-
-  propColor() {
-    return this.props.color || 'primary'
   }
 
   propDisabled() {
