@@ -25,3 +25,7 @@ h6 {
 p {
   @apply text-base text-gray-900;
 }
+
+a {
+  @apply cursor-pointer;
+}
