@@ -28,4 +28,8 @@ export default class Layout extends Component {
 
     return element
   }
+
+  propChildren() {
+    return this.props.children || ''
+  }
 }
