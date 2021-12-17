@@ -1,7 +1,7 @@
-import BasePage from '@erista/core/page'
+import Page from '@erista/core/page'
 import MainLayout from '@erista/layouts/main'
 
-export default class Dashboard extends BasePage {
+export default class Dashboard extends Page {
   render() {
     return (
       <MainLayout>

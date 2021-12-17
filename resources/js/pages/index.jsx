@@ -11,6 +11,7 @@ import Dashboard from './dashboard'
 import Login from './login'
 import ResetPassword from './resetPassword'
 import NewPassword from './newPassword'
+import People from './people'
 import NotFoundError from './notFoundError'
 
 export default class Page extends BasePage {
@@ -24,6 +25,7 @@ export default class Page extends BasePage {
             <Route path="login" element={<Login/>}/>
             <Route path="reset_password" element={<ResetPassword/>}/>
             <Route path="new_password" element={<NewPassword/>}/>
+            <Route path="people/*" element={<People/>}/>
             <Route path="*" element={<NotFoundError/>}/>
           </Route>
         </Routes>

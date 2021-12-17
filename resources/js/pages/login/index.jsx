@@ -1,11 +1,11 @@
-import BasePage from '@erista/core/page'
+import Page from '@erista/core/page'
 import AuthLayout from '@erista/layouts/auth'
 
 import { Heading } from '@erista/components/atoms/typography'
 import { Link } from '@erista/components/atoms/link'
 import LoginForm from '@erista/forms/login'
 
-class Login extends BasePage {
+class Login extends Page {
   render() {
     return (
       <AuthLayout>

@@ -1,11 +1,11 @@
-import BasePage from '@erista/core/page'
+import Page from '@erista/core/page'
 import AuthLayout from '@erista/layouts/auth'
 
 import { Heading, Paragraph } from '@erista/components/atoms/typography'
 import { Link } from '@erista/components/atoms/link'
 import ResetPasswordForm from '@erista/forms/resetPassword'
 
-export default class ResetPassword extends BasePage {
+export default class ResetPassword extends Page {
   render() {
     return (
       <AuthLayout>
