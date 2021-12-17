@@ -68,11 +68,18 @@ export class Button extends Atom {
   }
 
   getDisabled() {
-    let classes = this.props.loading
-      ? 'disabled'
-      : (this.props.disabled ? 'disabled' : '')
+    let classes
+    if (this.props.loading) {
+      classes = ['disabled']
+    } else {
+      if (this.props.disabled) {
+        classes = ['disabled']
+      } else {
+        classes = null
+      }
+    }
 
-    return [classes]
+    return classes
   }
 
   propType() {
