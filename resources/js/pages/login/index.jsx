@@ -16,6 +16,7 @@ class Login extends BasePage {
         <LoginForm
           onLostPassword={ e => this.onLostPassword(e) }
           onCreateAccount={ e => this.onCreateAccount(e) }
+          onSuccess={ e => this.onSuccess(e) }
         />
       </AuthLayout>
     )
@@ -26,7 +27,11 @@ class Login extends BasePage {
   }
 
   onCreateAccount(e) {
+    
+  }
 
+  onSuccess(e) {
+    this.props.navigation('/web/dashboard')
   }
 }
 
