@@ -7,7 +7,7 @@ import { Link } from '@erista/components/atoms/link'
 export default class Login extends Form {
   render() {
     return (
-      <FormComponent>
+      <FormComponent onSubmit={ e => this._submit(e) }>
         <Input
           label="Your email"
           type="email"
