@@ -8,7 +8,8 @@ export default class Component extends BaseComponent {
   classMethods = []
 
   _getCompiledClasses() {
-    let classes = this.classes
+    let classes = []
+    classes.push(...this.classes)
 
     this.classMethods.forEach(methodName => {
       classes.push(...this[methodName]())

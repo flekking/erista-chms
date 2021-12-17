@@ -75,6 +75,7 @@ export default class Form extends Component {
 
   _submit(e) {
     e.preventDefault()
+    this._setLoading(true)
     this._beforeSubmit()
       .then(hookReturn => {
         this['_submit' + lodash.upperFirst(this._config()['method'])](hookReturn)
@@ -82,11 +83,13 @@ export default class Form extends Component {
       .catch(hookReturn => {
 
       })
+      .finally(hookReturn => {
+        this._setLoading(false)
+      })
   }
 
   _submitPost(hookReturn) {
     let config = this._config()
-    this._setLoading(true)
     this._resetErrors()
     axios({
       method: 'post',
