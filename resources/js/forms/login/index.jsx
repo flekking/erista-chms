@@ -22,7 +22,7 @@ export default class Login extends Form {
           <Checkbox label="Remember Me"/>
           <Link onClick={ e => this.onLostPassword(e) } className="ml-auto">Lost Password?</Link>
         </div>
-        <SubmitButton className="w-full">Login</SubmitButton>
+        <SubmitButton className="w-full" loading={this.state.form.loading}>Login</SubmitButton>
         <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
           Not registered? <Link onClick={ e => this.onCreateAccount() }>Create Account</Link>
         </div>
@@ -59,7 +59,7 @@ export default class Login extends Form {
           resolve(res)
         })
         .catch(err => {
-          console.log(err)
+          reject(err)
         })
     })
   }
