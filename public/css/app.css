@@ -458,6 +458,12 @@ a {
 .ml-auto {
   margin-left: auto;
 }
+.mt-8 {
+  margin-top: 2rem;
+}
+.mt-20 {
+  margin-top: 5rem;
+}
 .inline {
   display: inline;
 }

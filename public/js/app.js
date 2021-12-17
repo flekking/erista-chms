@@ -5424,8 +5424,19 @@ var Button = /*#__PURE__*/function (_Atom) {
   }, {
     key: "getDisabled",
     value: function getDisabled() {
-      var classes = this.props.loading ? 'disabled' : this.props.disabled ? 'disabled' : '';
-      return [classes];
+      var classes;
+
+      if (this.props.loading) {
+        classes = ['disabled'];
+      } else {
+        if (this.props.disabled) {
+          classes = ['disabled'];
+        } else {
+          classes = null;
+        }
+      }
+
+      return classes;
     }
   }, {
     key: "propType",
@@ -6525,7 +6536,9 @@ var Component = /*#__PURE__*/function (_BaseComponent) {
       this.classMethods.forEach(function (methodName) {
         var _classes2;
 
-        (_classes2 = classes).push.apply(_classes2, _toConsumableArray(_this2[methodName]()));
+        var newClasses = _this2[methodName]();
+
+        if (newClasses != null) (_classes2 = classes).push.apply(_classes2, _toConsumableArray(newClasses));
       });
 
       if (typeof this.props.className == 'string') {
@@ -7217,6 +7230,87 @@ var Login = /*#__PURE__*/function (_Form) {
   }]);
 
   return Login;
+}(_erista_core_form__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/forms/newPassword/index.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/forms/newPassword/index.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ NewPassword)
+/* harmony export */ });
+/* harmony import */ var _erista_core_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @erista/core/form */ "./resources/js/core/form.jsx");
+/* harmony import */ var _erista_components_atoms_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @erista/components/atoms/form */ "./resources/js/components/atoms/form.jsx");
+/* harmony import */ var _erista_components_molecules_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @erista/components/molecules/form */ "./resources/js/components/molecules/form.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+var NewPassword = /*#__PURE__*/function (_Form) {
+  _inherits(NewPassword, _Form);
+
+  var _super = _createSuper(NewPassword);
+
+  function NewPassword() {
+    _classCallCheck(this, NewPassword);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(NewPassword, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_erista_components_atoms_form__WEBPACK_IMPORTED_MODULE_1__.Form, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_erista_components_molecules_form__WEBPACK_IMPORTED_MODULE_2__.Input, {
+          label: "Your new password",
+          type: "password",
+          placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_erista_components_molecules_form__WEBPACK_IMPORTED_MODULE_2__.Input, {
+          label: "Confirm your new password",
+          type: "password",
+          placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_erista_components_atoms_form__WEBPACK_IMPORTED_MODULE_1__.SubmitButton, {
+          className: "w-full",
+          children: "Reset Password"
+        })]
+      });
+    }
+  }]);
+
+  return NewPassword;
 }(_erista_core_form__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
@@ -7981,7 +8075,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erista_core_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @erista/core/page */ "./resources/js/core/page.jsx");
 /* harmony import */ var _erista_layouts_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @erista/layouts/auth */ "./resources/js/layouts/auth/index.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _erista_components_atoms_typography__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @erista/components/atoms/typography */ "./resources/js/components/atoms/typography.jsx");
+/* harmony import */ var _erista_components_atoms_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @erista/components/atoms/link */ "./resources/js/components/atoms/link.jsx");
+/* harmony import */ var _erista_forms_newPassword__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @erista/forms/newPassword */ "./resources/js/forms/newPassword/index.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -8008,6 +8105,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+
+
 var NewPassword = /*#__PURE__*/function (_BasePage) {
   _inherits(NewPassword, _BasePage);
 
@@ -8022,10 +8123,17 @@ var NewPassword = /*#__PURE__*/function (_BasePage) {
   _createClass(NewPassword, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_erista_layouts_auth__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          children: "new password"
-        })
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_erista_layouts_auth__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "text-right",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_erista_components_atoms_link__WEBPACK_IMPORTED_MODULE_3__.Link, {
+            href: "#",
+            children: "Back"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_erista_components_atoms_typography__WEBPACK_IMPORTED_MODULE_2__.Heading, {
+          level: "5",
+          children: "Set your password"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_erista_forms_newPassword__WEBPACK_IMPORTED_MODULE_4__["default"], {})]
       });
     }
   }]);
