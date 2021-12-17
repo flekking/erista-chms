@@ -12,7 +12,8 @@ export default class Component extends BaseComponent {
     classes.push(...this.classes)
 
     this.classMethods.forEach(methodName => {
-      classes.push(...this[methodName]())
+      let newClasses = this[methodName]()
+      if (newClasses != null) classes.push(...newClasses)
     })
 
     if (typeof this.props.className == 'string') {
