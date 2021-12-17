@@ -94,11 +94,9 @@ export default class Form extends Component {
       data: this.state.form.data
     })
       .then(res => {
-        console.log(res)
         this._afterSuccessfulSubmit(hookReturn)
       })
       .catch(err => {
-        console.log(err)
         if (err.response.status == 422) {
           this.__handleValidationError(err.response.data)
         }
@@ -117,21 +115,15 @@ export default class Form extends Component {
   }
 
   _afterSuccesfulSubmit() {
-    return new Promise((resolve, reject) => {
-      resolve({})
-    })
+    if (typeof this.props.onSuccess == 'function') this.props.onSuccess()
   }
 
   _afterFailedSubmit() {
-    return new Promise((resolve, reject) => {
-      resolve({})
-    })
+    if (typeof this.props.onFailed == 'function') this.props.onFailed()
   }
 
   _afterSubmit() {
-    return new Promise((resolve, reject) => {
-      resolve({})
-    })
+    if (typeof this.props.whenDone == 'function') this.props.whenDone()
   }
 
   __handleValidationError(err) {
