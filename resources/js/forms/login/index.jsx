@@ -1,6 +1,5 @@
 import Form from '@erista/core/form'
 
-
 import { Form as FormComponent, SubmitButton } from '@erista/components/atoms/form'
 import { Input, Checkbox } from '@erista/components/molecules/form'
 import { Link } from '@erista/components/atoms/link'
@@ -29,6 +28,40 @@ export default class Login extends Form {
         </div>
       </FormComponent>
     )
+  }
+
+  _config() {
+    return {
+      url: '/ajax/log/authentication_log',
+      method: 'post',
+    }
+  }
+  _formData() {
+    return {
+      email: '',
+      password: '',
+    }
+  }
+  _formErrors() {
+    return {
+      email: '',
+      password: '',
+    }
+  }
+
+  _beforeSubmit() {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'get',
+        url: '/ajax/utils/csrf_cookie',
+      })
+        .then(res => {
+          resolve(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
   }
 
   onLostPassword(e) {
