@@ -104,7 +104,7 @@ function itemIsOpened(itemIndex) {
       if (open) {
         return
       }
-      open = subItem.href ? subItem.href == window.location.pathname : false
+      open = subItem.href ? window.location.pathname.indexOf(subItem.href) == 0 : false
     })
   }
 
@@ -118,7 +118,7 @@ function determineCurrentSubItem(itemIndex, subItemIndex) {
   subItem = item.children[subItemIndex]
 
   if (subItem.href) {
-    return subItem.href == window.location.pathname
+    return window.location.pathname.indexOf(subItem.href) == 0
   } else {
     return false
   }
