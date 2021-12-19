@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 
@@ -9,7 +9,7 @@ class TrimStrings extends Middleware
     /**
      * The names of the attributes that should not be trimmed.
      *
-     * @var array<int, string>
+     * @var array<int,string>
      */
     protected $except = [
         'current_password',
