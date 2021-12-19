@@ -10677,7 +10677,8 @@ var Form = /*#__PURE__*/function (_Component) {
         data: _this._formData(),
         errors: _this._formErrors(),
         loading: false
-      }
+      },
+      successfullySubmittedOnce: false
     };
     return _this;
   }
@@ -10703,22 +10704,22 @@ var Form = /*#__PURE__*/function (_Component) {
       this.setState(function (state) {
         var data = state.form.data;
         data[index] = e.target.value;
-        return {
+        return _objectSpread(_objectSpread({}, state), {}, {
           form: _objectSpread(_objectSpread({}, state.form), {}, {
             data: data
           })
-        };
+        });
       });
     }
   }, {
     key: "_setErrors",
     value: function _setErrors(err) {
       this.setState(function (state) {
-        return {
+        return _objectSpread(_objectSpread({}, state), {}, {
           form: _objectSpread(_objectSpread({}, state.form), {}, {
             errors: err
           })
-        };
+        });
       });
     }
   }, {
@@ -10730,11 +10731,11 @@ var Form = /*#__PURE__*/function (_Component) {
     key: "_setLoading",
     value: function _setLoading(loading) {
       this.setState(function (state) {
-        return {
+        return _objectSpread(_objectSpread({}, state), {}, {
           form: _objectSpread(_objectSpread({}, state.form), {}, {
             loading: loading
           })
-        };
+        });
       });
     }
   }, {
@@ -10752,7 +10753,7 @@ var Form = /*#__PURE__*/function (_Component) {
     value: function _submit(e) {
       var _this2 = this;
 
-      e.preventDefault();
+      if (e.preventDefault) e.preventDefault();
 
       this._setLoading(true);
 
@@ -10777,7 +10778,11 @@ var Form = /*#__PURE__*/function (_Component) {
         data: this.state.form.data
       }).then(function (res) {
         _this3._afterSuccessfulSubmit(hookReturn);
+
+        _this3.__successfullySubmittedOnce();
       })["catch"](function (err) {
+        console.log(err);
+
         if (err.response.status == 422) {
           _this3.__handleValidationError(err.response.data);
         }
@@ -10797,8 +10802,8 @@ var Form = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
-    key: "_afterSuccesfulSubmit",
-    value: function _afterSuccesfulSubmit() {
+    key: "_afterSuccessfulSubmit",
+    value: function _afterSuccessfulSubmit() {
       if (typeof this.props.onSuccess == 'function') this.props.onSuccess();
     }
   }, {
@@ -10815,6 +10820,15 @@ var Form = /*#__PURE__*/function (_Component) {
     key: "__handleValidationError",
     value: function __handleValidationError(err) {
       this._setErrors(err.errors);
+    }
+  }, {
+    key: "__successfullySubmittedOnce",
+    value: function __successfullySubmittedOnce() {
+      this.setState(function (state) {
+        return _objectSpread(_objectSpread({}, state), {}, {
+          successfullySubmittedOnce: true
+        });
+      });
     }
   }, {
     key: "componentWillUnmount",
@@ -11196,6 +11210,83 @@ var Login = /*#__PURE__*/function (_Form) {
   }]);
 
   return Login;
+}(_erista_core_form__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/forms/logout/index.jsx":
+/*!*********************************************!*\
+  !*** ./resources/js/forms/logout/index.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Logout)
+/* harmony export */ });
+/* harmony import */ var _erista_core_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @erista/core/form */ "./resources/js/core/form.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var Logout = /*#__PURE__*/function (_Form) {
+  _inherits(Logout, _Form);
+
+  var _super = _createSuper(Logout);
+
+  function Logout() {
+    _classCallCheck(this, Logout);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Logout, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {});
+    }
+  }, {
+    key: "_config",
+    value: function _config() {
+      return {
+        url: '/ajax/log/authentication_log/logout',
+        method: 'post'
+      };
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this._submit({});
+    }
+  }]);
+
+  return Logout;
 }(_erista_core_form__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
@@ -11605,7 +11696,7 @@ var userNavigation = [{
   href: '#'
 }, {
   name: 'Sign out',
-  href: '/web/login'
+  href: '/web/logout'
 }];
 
 function classNames() {
@@ -11809,10 +11900,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Sidebar)
 /* harmony export */ });
-/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/components/disclosure/disclosure.esm.js");
+/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/components/disclosure/disclosure.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @heroicons/react/outline */ "./node_modules/@heroicons/react/outline/esm/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* This example requires Tailwind CSS v2.0+ */
+
 
 
 
@@ -11961,22 +12054,22 @@ function Sidebar() {
         "aria-label": "Sidebar",
         children: navigation.map(function (item, itemIndex) {
           return !item.children ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
-              href: item.href,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+              to: item.href,
               className: classNames(determineCurrentItem(itemIndex) ? 'bg-orange-500 text-gray-100' : 'text-gray-100 hover:bg-orange-400', 'group w-full flex items-center pl-2 pr-0 py-2 text-base font-normal rounded-md'),
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(item.icon, {
                 className: "mr-3 flex-shrink-0 h-6 w-6 text-gray-100",
                 "aria-hidden": "true"
               }), item.name]
             })
-          }, item.name) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.Disclosure, {
+          }, item.name) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_3__.Disclosure, {
             as: "div",
             className: "space-y-1",
             defaultOpen: itemIsOpened(itemIndex),
             children: function children(_ref) {
               var open = _ref.open;
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.Disclosure.Button, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_3__.Disclosure.Button, {
                   className: classNames(determineCurrentItem(itemIndex) ? 'bg-orange-500 text-gray-100' : 'text-gray-100 hover:bg-orange-400', 'group w-full flex items-center justify-between pl-2 pr-0 py-2 text-left text-base font-normal rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500'),
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                     className: "flex",
@@ -11993,12 +12086,12 @@ function Sidebar() {
                       fill: "currentColor"
                     })
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.Disclosure.Panel, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_3__.Disclosure.Panel, {
                   className: "space-y-1",
                   children: item.children.map(function (subItem, subItemIndex) {
-                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.Disclosure.Button, {
-                      as: "a",
-                      href: subItem.href,
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_3__.Disclosure.Button, {
+                      as: react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link,
+                      to: subItem.href,
                       className: classNames(determineCurrentSubItem(itemIndex, subItemIndex) ? 'bg-orange-500 text-gray-100' : 'text-gray-100 hover:bg-orange-400', 'group w-full flex items-center pl-10 pr-0 py-2 text-base font-normal text-gray-100 rounded-md hover:text-gray-100 hover:bg-orange-400'),
                       children: subItem.name
                     }, subItem.name);
@@ -12088,12 +12181,18 @@ react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Authenticated)
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _erista_core_middleware__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @erista/core/middleware */ "./resources/js/core/middleware.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -12117,35 +12216,49 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
-
 var Authenticated = /*#__PURE__*/function (_Middleware) {
   _inherits(Authenticated, _Middleware);
 
   var _super = _createSuper(Authenticated);
 
-  function Authenticated() {
+  function Authenticated(props) {
+    var _this;
+
     _classCallCheck(this, Authenticated);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      loggedIn: true
+    };
+    return _this;
   }
 
   _createClass(Authenticated, [{
     key: "render",
     value: function render() {
-      if (this.isLoggedIn()) {
-        return this.props.children;
-      } else {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Navigate, {
-          replace: true,
-          to: "/web/login"
-        });
-      }
+      return this.state.loggedIn && this.props.children;
     }
   }, {
-    key: "isLoggedIn",
-    value: function isLoggedIn() {
-      return true;
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios({
+        method: 'get',
+        url: '/ajax/utils/authenticated'
+      }).then(function (res) {
+        if (!res.data.authenticated) {
+          _this2.props.navigation('/web/login');
+        } else {
+          _this2.setState(function (state) {
+            return {
+              loggedIn: true
+            };
+          });
+        }
+      })["catch"](function (err) {
+        _this2.props.navigation('/web/login');
+      });
     }
   }]);
 
@@ -12153,6 +12266,13 @@ var Authenticated = /*#__PURE__*/function (_Middleware) {
 }(_erista_core_middleware__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
+
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(props) {
+  var navigation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Authenticated, _objectSpread(_objectSpread({}, props), {}, {
+    navigation: navigation
+  }));
+}
 
 /***/ }),
 
@@ -12165,12 +12285,18 @@ var Authenticated = /*#__PURE__*/function (_Middleware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Authenticated)
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _erista_core_middleware__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @erista/core/middleware */ "./resources/js/core/middleware.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -12194,42 +12320,63 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var Unauthenticated = /*#__PURE__*/function (_Middleware) {
+  _inherits(Unauthenticated, _Middleware);
 
+  var _super = _createSuper(Unauthenticated);
 
-var Authenticated = /*#__PURE__*/function (_Middleware) {
-  _inherits(Authenticated, _Middleware);
+  function Unauthenticated(props) {
+    var _this;
 
-  var _super = _createSuper(Authenticated);
+    _classCallCheck(this, Unauthenticated);
 
-  function Authenticated() {
-    _classCallCheck(this, Authenticated);
-
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      loggedIn: false
+    };
+    return _this;
   }
 
-  _createClass(Authenticated, [{
+  _createClass(Unauthenticated, [{
     key: "render",
     value: function render() {
-      if (this.isNotLoggedIn()) {
-        return this.props.children;
-      } else {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Navigate, {
-          replace: true,
-          to: "/web/"
-        });
-      }
+      return !this.state.loggedIn && this.props.children;
     }
   }, {
-    key: "isNotLoggedIn",
-    value: function isNotLoggedIn() {
-      return true;
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios({
+        method: 'get',
+        url: '/ajax/utils/authenticated'
+      }).then(function (res) {
+        if (!res.data.authenticated) {
+          _this2.props.navigation('/web/login');
+        } else {
+          _this2.setState(function (state) {
+            return {
+              loggedIn: true
+            };
+          });
+        }
+      })["catch"](function (err) {
+        _this2.props.navigation('/web/login');
+      });
     }
   }]);
 
-  return Authenticated;
+  return Unauthenticated;
 }(_erista_core_middleware__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
+
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(props) {
+  var navigation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Unauthenticated, _objectSpread(_objectSpread({}, props), {}, {
+    navigation: navigation
+  }));
+}
 
 /***/ }),
 
@@ -12321,15 +12468,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Page)
 /* harmony export */ });
 /* harmony import */ var _erista_core_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @erista/core/page */ "./resources/js/core/page.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard */ "./resources/js/pages/dashboard/index.jsx");
 /* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login */ "./resources/js/pages/login/index.jsx");
-/* harmony import */ var _resetPassword__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./resetPassword */ "./resources/js/pages/resetPassword/index.jsx");
-/* harmony import */ var _newPassword__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./newPassword */ "./resources/js/pages/newPassword/index.jsx");
-/* harmony import */ var _people__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./people */ "./resources/js/pages/people/index.jsx");
-/* harmony import */ var _notFoundError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./notFoundError */ "./resources/js/pages/notFoundError/index.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _logout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./logout */ "./resources/js/pages/logout/index.jsx");
+/* harmony import */ var _resetPassword__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./resetPassword */ "./resources/js/pages/resetPassword/index.jsx");
+/* harmony import */ var _newPassword__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./newPassword */ "./resources/js/pages/newPassword/index.jsx");
+/* harmony import */ var _people__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./people */ "./resources/js/pages/people/index.jsx");
+/* harmony import */ var _notFoundError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./notFoundError */ "./resources/js/pages/notFoundError/index.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -12363,6 +12511,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Page = /*#__PURE__*/function (_BasePage) {
   _inherits(Page, _BasePage);
 
@@ -12377,35 +12526,38 @@ var Page = /*#__PURE__*/function (_BasePage) {
   _createClass(Page, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Routes, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.BrowserRouter, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Routes, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
             path: "/web",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Outlet, {}),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Outlet, {}),
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
               index: true,
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Navigate, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Navigate, {
                 replace: true,
                 to: "dashboard"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
               path: "dashboard",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_dashboard__WEBPACK_IMPORTED_MODULE_1__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_dashboard__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
               path: "login",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+              path: "logout",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_logout__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
               path: "reset_password",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_resetPassword__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_resetPassword__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
               path: "new_password",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_newPassword__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_newPassword__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
               path: "people/*",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_people__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_people__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
               path: "*",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_notFoundError__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_notFoundError__WEBPACK_IMPORTED_MODULE_7__["default"], {})
             })]
           })
         })
@@ -12535,6 +12687,101 @@ var Login = /*#__PURE__*/function (_Page) {
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(props) {
   var navigation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Login, _objectSpread(_objectSpread({}, props), {}, {
+    navigation: navigation
+  }));
+}
+
+/***/ }),
+
+/***/ "./resources/js/pages/logout/index.jsx":
+/*!*********************************************!*\
+  !*** ./resources/js/pages/logout/index.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _erista_core_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @erista/core/page */ "./resources/js/core/page.jsx");
+/* harmony import */ var _erista_layouts_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @erista/layouts/auth */ "./resources/js/layouts/auth/index.jsx");
+/* harmony import */ var _erista_components_atoms_typography__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @erista/components/atoms/typography */ "./resources/js/components/atoms/typography.jsx");
+/* harmony import */ var _erista_components_atoms_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @erista/components/atoms/link */ "./resources/js/components/atoms/link.jsx");
+/* harmony import */ var _erista_forms_logout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @erista/forms/logout */ "./resources/js/forms/logout/index.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+var Logout = /*#__PURE__*/function (_Page) {
+  _inherits(Logout, _Page);
+
+  var _super = _createSuper(Logout);
+
+  function Logout() {
+    _classCallCheck(this, Logout);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Logout, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_erista_forms_logout__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        onSuccess: function onSuccess(e) {
+          return _this.onSuccess(e);
+        }
+      });
+    }
+  }, {
+    key: "onSuccess",
+    value: function onSuccess(e) {
+      this.props.navigation('/web/login');
+    }
+  }]);
+
+  return Logout;
+}(_erista_core_page__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(props) {
+  var navigation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Logout, _objectSpread(_objectSpread({}, props), {}, {
     navigation: navigation
   }));
 }
