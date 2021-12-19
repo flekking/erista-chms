@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::any('{any?}', 'AppController@index')->where('any', '.*');
+Route::domain('{churchSubdomain}.' . env('SITE_URL'))->group(function () {
+    Route::any('{any?}', 'AppController@index')->where('any', '.*');
+});
