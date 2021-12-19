@@ -17,6 +17,11 @@ class Container
         self::$id = $church->_id;
     }
 
+    public static function id()
+    {
+        return self::$id;
+    }
+
     public static function setBySubdomain(string $churchSubdomain)
     {
         self::set(Church::where('subdomain', $churchSubdomain)->first());
