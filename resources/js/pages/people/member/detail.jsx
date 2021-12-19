@@ -11,7 +11,8 @@ export default class Detail extends Page {
           title="Member Detail"
           pages={[
             { name: 'People', href: '#', current: false },
-            { name: 'Member List', href: '#', current: true },
+            { name: 'Member', href: '#', current: false },
+            { name: 'Member List', href: '#', current: false },
             { name: 'Homer Simpson', href: '#', current: true },
           ]}
         />

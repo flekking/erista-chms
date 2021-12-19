@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 import { Fragment } from 'react'
 
+import Create from './create'
 import Detail from './detail'
 import NotFoundError from '@erista/pages/notFoundError'
 
@@ -14,6 +15,7 @@ export default class Member extends Page {
       <>
         <Routes>
           <Route index element={<Index/>}/>
+          <Route path="create" element={<Create/>}/>
           <Route path="detail" element={<Detail/>}/>
           <Route path="*" element={<NotFoundError/>}/>
         </Routes>
@@ -35,6 +37,7 @@ class Index extends Page {
           title="Member List"
           pages={[
             { name: 'People', href: '#', current: false },
+            { name: 'Member', href: '#', current: false },
             { name: 'Member List', href: '#', current: true }
           ]}
           buttons={[
