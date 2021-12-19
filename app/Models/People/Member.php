@@ -7,11 +7,13 @@ use Jenssegers\Mongodb\Eloquent\{
     SoftDeletes,
 };
 use App\Models\Concerns\Foreign\Auth\BelongsToChurch;
+use App\Models\Concerns\Foreign\Collaboration\BelongsToSmallGroups;
 
 class Member extends Model
 {
     use SoftDeletes;
     use BelongsToChurch;
+    use BelongsToSmallGroups;
 
     public function memberFamilyRelations()
     {
