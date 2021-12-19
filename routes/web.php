@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('{any?}', 'web.app')->where('any', '.*');
+Route::any('{any?}', 'AppController@index')->where('any', '.*');
