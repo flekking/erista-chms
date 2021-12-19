@@ -10,7 +10,7 @@ Route::domain('{churchSubdomain}.' . env('SITE_URL'))->group(function () {
 
     Route::post('log/authentication_log/login', 'Log\\AuthenticationLogController@storeLogin');
 
-    Route::middleware('auth:web')->group(function () {
+    Route::middleware(['auth:web', 'auth.container'])->group(function () {
 
         Route::prefix('log')->namespace('Log')->group(function () {
 
