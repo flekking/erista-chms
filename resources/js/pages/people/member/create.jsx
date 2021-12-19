@@ -3,7 +3,7 @@ import Page from '@erista/core/page'
 import MainLayout from '@erista/layouts/main'
 import PageHeader from '@erista/components/molecules/pageHeader'
 import { Card } from '@erista/components/atoms/card'
-import { Tab } from '@erista/components/molecules/tab'
+import CreateForm from '@erista/forms/people/member/create'
 
 export default class Detail extends Page {
   render() {
@@ -22,13 +22,7 @@ export default class Detail extends Page {
           <div className="grid grid-cols-1 px-4 gap-4">
             <div className="col-span-1">
               <Card className="mb-5">
-                <Tab
-                  tabs={[
-                    { title: 'General Info', element: 'meh' },
-                    { title: 'Family Info', element: 'bleh' },
-                    { title: 'Small Group', element: 'dawg' },
-                  ]}
-                />
+                <CreateForm/>
               </Card>
             </div>
           </div>

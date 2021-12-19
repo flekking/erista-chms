@@ -1,6 +1,7 @@
 import Molecule from '@erista/core/components/molecule'
 
 import { TabButton } from '@erista/components/atoms/tab'
+import { RedDotBadge } from '@erista/components/atoms/badge'
 export class Tab extends Molecule {
   constructor(props) {
     super(props)
@@ -23,7 +24,7 @@ export class Tab extends Molecule {
                         active={this.tabIsOpened(i)}
                         onClick={e => this.openTab(i) }
                       >
-                        {tab.title}
+                        {tab.title} <RedDotBadge show={tab.hasErrors}/>
                       </TabButton>
                     </li>
                   )

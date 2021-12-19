@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import hash from 'object-hash'
 
 export default class Form extends Component {
   subForms = {}
@@ -13,6 +14,8 @@ export default class Form extends Component {
         loading: false,
       },
       successfullySubmittedOnce: false,
+      meta: this._meta(),
+      hash: 'initial',
     }
   }
 
@@ -21,6 +24,10 @@ export default class Form extends Component {
   }
 
   _formErrors() {
+    return {}
+  }
+
+  _meta() {
     return {}
   }
 
@@ -103,6 +110,17 @@ export default class Form extends Component {
     return this.state.form.errors[index].length > 0
   }
 
+  _setMeta(meta) {
+    this.setState(state => ({
+      ...state,
+      meta
+    }))
+  }
+
+  _hash(index) {
+    return this.state.hash + '-' + index
+  }
+
   _submit(e) {
     if (e.preventDefault) e.preventDefault()
     this._setLoading(true)
@@ -111,10 +129,10 @@ export default class Form extends Component {
         this['_submit' + lodash.upperFirst(this._config()['method'])](hookReturn)
       })
       .catch(hookReturn => {
-
+        this._setLoading(false)
       })
       .finally(hookReturn => {
-        this._setLoading(false)
+        
       })
   }
 
@@ -138,6 +156,7 @@ export default class Form extends Component {
         this._afterFailedSubmit(hookReturn)
       })
       .finally(() => {
+        this.__refreshHash()
         this._setLoading(false)
         this._afterSubmit(hookReturn)
       })
@@ -172,6 +191,28 @@ export default class Form extends Component {
     }))
   }
 
+  __refreshHash() {
+    this.setState(state => ({
+      ...state,
+      hash: hash(this.state.form)
+    }))
+  }
+
+  _resetForm() {
+    this.setState(state => {
+      return {
+        form: {
+          data: this._formData(),
+          errors: this._formErrors(),
+          loading: false,
+        },
+        successfullySubmittedOnce: false,
+        meta: this._meta(),
+        hash: 'initial',
+      }
+    })
+  }
+
   _passSubForm(index) {
     let form = this.state.form
 
@@ -189,6 +230,19 @@ export default class Form extends Component {
     }
   }
 
+  _subFormHasErrors(index) {
+    let indexes = this.subForms[index]
+    let error = false
+    indexes.forEach(i => {
+      if (error) {
+        return
+      }
+      error = this._hasErrors(i)
+    })
+
+    return error
+  }
+
   componentWillUnmount() {
     // fix Warning: Can't perform a React state update on an unmounted component
     this.setState = (state, callback)=>{
@@ -201,7 +255,7 @@ export class SubForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      form: props.form,
+      form: props.form(),
     }
   }
 

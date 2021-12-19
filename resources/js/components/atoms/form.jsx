@@ -162,6 +162,7 @@ export class SubmitButton extends Atom {
         loading={this.props.loading}
         color={this.props.color}
         type="submit"
+        onClick={ e => this.onClick(e) }
       >
         {this.props.children}
       </Button>
