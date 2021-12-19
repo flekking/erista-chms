@@ -1,4 +1,5 @@
 import Molecule from '@erista/core/components/molecule'
+import { Heading } from '@erista/components/atoms/typography'
 import { ChevronLeftIcon } from '@heroicons/react/solid'
 import { Breadcrumb } from '@erista/components/atoms/breadcrumb'
 import { Button, RouterButton } from '@erista/components/atoms/button'
@@ -19,7 +20,7 @@ export default class PageHeader extends Molecule {
         </div>
         <div className="mt-2 md:flex md:items-center md:justify-between">
           <div className="flex-1 min-w-0">
-            <h2 className="text-2xl font-bold leading-7 text-gray-900 dark:text-gray-100 sm:text-3xl sm:truncate">{this.props.title}</h2>
+            <Heading level="4">{this.props.title}</Heading>
           </div>
           <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
             {this.propButtons().map((button, i) => {
