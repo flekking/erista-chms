@@ -100,6 +100,7 @@ export default class Form extends Component {
         this._afterSuccessfulSubmit(hookReturn)
       })
       .catch(err => {
+        console.log(err)
         if (err.response.status == 422) {
           this.__handleValidationError(err.response.data)
         }
@@ -117,7 +118,7 @@ export default class Form extends Component {
     })
   }
 
-  _afterSuccesfulSubmit() {
+  _afterSuccessfulSubmit() {
     if (typeof this.props.onSuccess == 'function') this.props.onSuccess()
   }
 
