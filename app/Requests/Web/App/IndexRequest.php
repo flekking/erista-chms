@@ -2,7 +2,7 @@
 
 namespace App\Requests\Web\App;
 
-use Core\Http\FormRequest;
+use Core\Request\FormRequest;
 
 class IndexRequest extends FormRequest
 {
