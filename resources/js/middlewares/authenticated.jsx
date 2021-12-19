@@ -1,20 +1,37 @@
 import Middleware from '@erista/core/middleware'
-import { Navigate } from 'react-router-dom'
 
-export default class Authenticated extends Middleware {
-  render() {
-    if (this.isLoggedIn()) {
-      return (
-        this.props.children
-      )
-    } else {
-      return (
-        <Navigate replace to="/web/login"/>
-      )
+class Authenticated extends Middleware {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loggedIn: false
     }
   }
-  
-  isLoggedIn() {
-    return true
+
+  render() {
+    return this.state.loggedIn && this.props.children
   }
+
+  componentDidMount() {
+    axios({
+      method: 'get',
+      url: '/ajax/utils/authenticated'
+    })
+      .then(res => {
+        if ( ! res.data.authenticated) {
+          this.props.navigation('/web/login')
+        } else {
+          this.setState(state => ({ loggedIn: true }))
+        }
+      })
+      .catch(err => {
+        this.props.navigation('/web/login')
+      })
+  }
+}
+
+import { useNavigate } from 'react-router-dom'
+export default function (props) {
+  const navigation = useNavigate()
+  return <Authenticated {...props} navigation={navigation}/>
 }
