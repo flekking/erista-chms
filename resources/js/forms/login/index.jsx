@@ -12,11 +12,17 @@ export default class Login extends Form {
           label="Your email"
           type="email"
           placeholder="name@company.com"
+          value={this.state.form.data.email}
+          onChange={ e => this._handleFormDataChange(e, 'email') }
+          errors={this.state.form.errors.email}
         />
         <Input
           label="Your password"
           type="password"
           placeholder="••••••••"
+          value={this.state.form.data.password}
+          onChange={ e => this._handleFormDataChange(e, 'password') }
+          errors={this.state.form.errors.password}
         />
         <div className="flex items-center">
           <Checkbox label="Remember Me"/>
@@ -32,7 +38,7 @@ export default class Login extends Form {
 
   _config() {
     return {
-      url: '/ajax/log/authentication_log',
+      url: '/ajax/log/authentication_log/login',
       method: 'post',
     }
   }
