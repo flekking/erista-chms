@@ -10,6 +10,7 @@ export default class Form extends Component {
         errors: this._formErrors(),
         loading: false,
       },
+      successfullySubmittedOnce: false,
     }
   }
 
@@ -31,6 +32,7 @@ export default class Form extends Component {
       data[index] = e.target.value
 
       return {
+        ...state,
         form: {
           ...state.form,
           data: data,
@@ -42,6 +44,7 @@ export default class Form extends Component {
   _setErrors(err) {
     this.setState(state => {
       return {
+        ...state,
         form: {
           ...state.form,
           errors: err,
@@ -57,6 +60,7 @@ export default class Form extends Component {
   _setLoading(loading) {
     this.setState(state => {
       return {
+        ...state,
         form: {
           ...state.form,
           loading: loading,
@@ -74,7 +78,7 @@ export default class Form extends Component {
   }
 
   _submit(e) {
-    e.preventDefault()
+    if (e.preventDefault) e.preventDefault()
     this._setLoading(true)
     this._beforeSubmit()
       .then(hookReturn => {
@@ -98,6 +102,7 @@ export default class Form extends Component {
     })
       .then(res => {
         this._afterSuccessfulSubmit(hookReturn)
+        this.__successfullySubmittedOnce()
       })
       .catch(err => {
         console.log(err)
@@ -134,9 +139,16 @@ export default class Form extends Component {
     this._setErrors(err.errors)
   }
 
+  __successfullySubmittedOnce() {
+    this.setState(state => ({
+      ...state,
+      successfullySubmittedOnce: true,
+    }))
+  }
+
   componentWillUnmount() {
     // fix Warning: Can't perform a React state update on an unmounted component
-    this.setState = (state,callback)=>{
+    this.setState = (state, callback)=>{
       return;
     };
   }

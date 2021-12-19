@@ -2,7 +2,6 @@ import Form from '@erista/core/form'
 
 export default class Logout extends Form {
   render() {
-    this._submit({})
     return (
       <></>
     )
@@ -13,5 +12,9 @@ export default class Logout extends Form {
       url: '/ajax/log/authentication_log/logout',
       method: 'post',
     }
+  }
+
+  componentDidMount() {
+    this._submit({})
   }
 }
