@@ -3,6 +3,7 @@
 namespace Core\Auth;
 
 use App\Models\Auth\Church;
+use Illuminate\Support\Facades\Auth;
 
 class Container
 {
@@ -24,5 +25,15 @@ class Container
     public static function get() : Church
     {
         return self::$church;
+    }
+
+    public static function userExists($id) : bool
+    {
+        return in_array($id, self::get()->users()->pluck('_id')->toArray());
+    }
+
+    public static function check() : bool
+    {
+        return Auth::check() && self::userExists(Auth::id());
     }
 }
