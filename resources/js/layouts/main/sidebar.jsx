@@ -26,7 +26,7 @@ const navigation = [
     icon: UserGroupIcon,
     open: false,
     children: [
-      { name: 'Member List', href: '/web/people/member' },
+      { name: 'Member', href: '/web/people/member' },
     ],
   },
   {
