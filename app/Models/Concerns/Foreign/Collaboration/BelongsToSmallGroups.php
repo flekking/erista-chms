@@ -4,7 +4,7 @@ namespace App\Models\Concerns\Foreign\Collaboration;
 
 use App\Models\Collaboration\SmallGroup;
 
-trait BelongsToSmallGroup
+trait BelongsToSmallGroups
 {
     public function smallGroups()
     {
