@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Concerns\Foreign\Auth\{
+    BelongsToChurches,
+    BelongsToRole
+};
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    use BelongsToChurches, BelongsToRole;
 
     /**
      * The attributes that are mass assignable.
