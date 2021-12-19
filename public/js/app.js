@@ -11100,11 +11100,21 @@ var Login = /*#__PURE__*/function (_Form) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_erista_components_molecules_form__WEBPACK_IMPORTED_MODULE_2__.Input, {
           label: "Your email",
           type: "email",
-          placeholder: "name@company.com"
+          placeholder: "name@company.com",
+          value: this.state.form.data.email,
+          onChange: function onChange(e) {
+            return _this._handleFormDataChange(e, 'email');
+          },
+          errors: this.state.form.errors.email
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_erista_components_molecules_form__WEBPACK_IMPORTED_MODULE_2__.Input, {
           label: "Your password",
           type: "password",
-          placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"
+          placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+          value: this.state.form.data.password,
+          onChange: function onChange(e) {
+            return _this._handleFormDataChange(e, 'password');
+          },
+          errors: this.state.form.errors.password
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "flex items-center",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_erista_components_molecules_form__WEBPACK_IMPORTED_MODULE_2__.Checkbox, {
@@ -11135,7 +11145,7 @@ var Login = /*#__PURE__*/function (_Form) {
     key: "_config",
     value: function _config() {
       return {
-        url: '/ajax/log/authentication_log',
+        url: '/ajax/log/authentication_log/login',
         method: 'post'
       };
     }
