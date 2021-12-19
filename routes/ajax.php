@@ -28,7 +28,11 @@ Route::domain('{churchSubdomain}.' . env('SITE_URL'))->group(function () {
 
         Route::prefix('people')->namespace('People')->group(function () {
             Route::prefix('member')->group(function () {
+                Route::get('', 'MemberController@index');
+                Route::get('{id}', 'MemberController@show');
                 Route::post('', 'MemberController@store');
+                Route::put('{id}', 'MemberController@amend');
+                Route::delete('{id}', 'MemberController@destroy');
             });
         });
     });
