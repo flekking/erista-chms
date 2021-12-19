@@ -16,6 +16,21 @@ export class Form extends Atom {
 }
 
 /**
+ * Define the subform element.
+ */
+export class SubForm extends Atom {
+  classes = ['space-y-4']
+
+  render() {
+    return (
+      <div className={this._getCompiledClasses()}>
+        {this.props.children}
+      </div>
+    )
+  }
+}
+
+/**
  * Define the <input/> element, limited to every input types, except for the
  * "checkbox" and "radio"
  */
@@ -145,6 +160,7 @@ export class SubmitButton extends Atom {
       <Button
         className={this._getCompiledClasses()}
         loading={this.props.loading}
+        color={this.props.color}
         type="submit"
       >
         {this.props.children}

@@ -36,7 +36,7 @@ export class Tab extends Molecule {
           this.propTabs().map((tab, i) => {
             if (this.state.opened == i) {
               return (
-                <div className="p-4" key={i}>
+                <div className="p-4 pt-0" key={i}>
                   {tab.element}
                 </div>
               )

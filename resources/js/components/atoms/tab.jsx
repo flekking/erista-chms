@@ -6,7 +6,7 @@ export class TabButton extends Atom {
 
   render() {
     return (
-      <button className={this._getCompiledClasses()} onClick={ e => this.onClick(e) }>
+      <button className={this._getCompiledClasses()} onClick={ e => this.onClick(e) } type="button">
         {this.props.children}
       </button>
     )

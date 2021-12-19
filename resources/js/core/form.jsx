@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 export default class Form extends Component {
+  subForms = {}
+
   constructor(props) {
     super(props)
     this.state = {
@@ -36,6 +38,30 @@ export default class Form extends Component {
         form: {
           ...state.form,
           data: data,
+        }
+      }
+    })
+  }
+
+  _handleSubFormChange(subForm) {
+    this.setState(state => {
+      let form = state.form
+
+      let data = {
+        ...form.data,
+        ...subForm.data,
+      }
+      let errors = {
+        ...form.errors,
+        ...subForm.errors,
+      }
+
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          data,
+          errors
         }
       }
     })
@@ -144,6 +170,78 @@ export default class Form extends Component {
       ...state,
       successfullySubmittedOnce: true,
     }))
+  }
+
+  _passSubForm(index) {
+    let form = this.state.form
+
+    let indexes = this.subForms[index]
+    let data = {}
+    let errors = {}
+    indexes.forEach(i => {
+      data[i] = form.data[i]
+      errors[i] = form.errors[i]
+    })
+    
+    return {
+      data,
+      errors,
+    }
+  }
+
+  componentWillUnmount() {
+    // fix Warning: Can't perform a React state update on an unmounted component
+    this.setState = (state, callback)=>{
+      return;
+    };
+  }
+}
+
+export class SubForm extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      form: props.form,
+    }
+  }
+
+  _handleFormDataChange(e, index) {
+    this.setState(state => {
+      let data = state.form.data
+      data[index] = e.target.value
+
+      if (typeof this.props.onChange == 'function') {
+        this.props.onChange(this.state.form)
+      }
+
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          data: data,
+        }
+      }
+    })
+  }
+
+  _setErrors(err) {
+    this.setState(state => {
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          errors: err,
+        }
+      }
+    })
+  }
+
+  _resetErrors() {
+    this._setErrors(this._formErrors())
+  }
+
+  _hasErrors(index) {
+    return this.state.form.errors[index].length > 0
   }
 
   componentWillUnmount() {
