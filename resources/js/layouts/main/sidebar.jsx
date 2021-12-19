@@ -1,5 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Disclosure } from '@headlessui/react'
+import { Link } from 'react-router-dom'
 
 import {
     BellIcon,
@@ -140,8 +141,8 @@ export default function Sidebar() {
             !item.children
               ? (
                   <div key={item.name}>
-                    <a
-                      href={item.href}
+                    <Link
+                      to={item.href}
                       className={classNames(
                         determineCurrentItem(itemIndex)
                           ? 'bg-orange-500 text-gray-100'
@@ -151,7 +152,7 @@ export default function Sidebar() {
                     >
                       <item.icon className="mr-3 flex-shrink-0 h-6 w-6 text-gray-100" aria-hidden="true" />
                       {item.name}
-                    </a>
+                    </Link>
                   </div>
                 )
               : (
@@ -185,8 +186,8 @@ export default function Sidebar() {
                           {item.children.map((subItem, subItemIndex) => (
                             <Disclosure.Button
                               key={subItem.name}
-                              as="a"
-                              href={subItem.href}
+                              as={Link}
+                              to={subItem.href}
                               className={
                                 classNames(
                                   determineCurrentSubItem(itemIndex, subItemIndex)
